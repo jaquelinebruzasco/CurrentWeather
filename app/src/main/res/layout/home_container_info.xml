@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardElevation="@dimen/default_margin_1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_uvi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sunny_weather"
+            app:layout_constraintEnd_toStartOf="@id/iv_wind"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_uvi"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin_1"
+            android:text="@string/fragment_info_uvi"
+            app:layout_constraintEnd_toStartOf="@id/tv_wind"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_uvi" />
+
+        <TextView
+            android:id="@+id/tv_uvi_info"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin_1"
+            app:layout_constraintEnd_toStartOf="@id/tv_wind_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_uvi"
+            tools:text="9.71" />
+
+        <ImageView
+            android:id="@+id/iv_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_2"
+            android:src="@drawable/ic_wind"
+            app:layout_constraintEnd_toStartOf="@id/iv_humidity"
+            app:layout_constraintStart_toEndOf="@id/iv_uvi"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_wind"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_2"
+            android:layout_marginTop="@dimen/default_margin_1"
+            android:text="@string/fragment_info_wind"
+            app:layout_constraintEnd_toStartOf="@id/tv_humidity"
+            app:layout_constraintStart_toEndOf="@id/tv_uvi"
+            app:layout_constraintTop_toBottomOf="@id/iv_wind" />
+
+        <TextView
+            android:id="@+id/tv_wind_info"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_2"
+            android:layout_marginTop="@dimen/default_margin_1"
+            app:layout_constraintEnd_toStartOf="@id/tv_humidity_info"
+            app:layout_constraintStart_toEndOf="@id/tv_uvi_info"
+            app:layout_constraintTop_toBottomOf="@id/tv_wind"
+            tools:text="7.72" />
+
+        <ImageView
+            android:id="@+id/iv_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_2"
+            android:src="@drawable/ic_humidity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_wind"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_humidity"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_2"
+            android:layout_marginTop="@dimen/default_margin_1"
+            android:text="@string/fragment_info_humidity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_wind"
+            app:layout_constraintTop_toBottomOf="@id/iv_humidity" />
+
+        <TextView
+            android:id="@+id/tv_humidity_info"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_2"
+            android:layout_marginTop="@dimen/default_margin_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_wind_info"
+            app:layout_constraintTop_toBottomOf="@id/tv_humidity"
+            tools:text="65" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
