@@ -10,43 +10,48 @@
         android:id="@+id/tv_day_daily"
         style="@style/Body"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toStartOf="@id/tv_description_daily"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Today" />
 
-    <TextView
-        android:id="@+id/tv_description_daily"
-        style="@style/Body"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/default_margin_2"
-        app:drawableEndCompat="@drawable/ic_sunny_weather2"
-        app:layout_constraintEnd_toStartOf="@id/tv_max_daily"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_day_daily"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Clear sky" />
+        app:layout_constraintEnd_toStartOf="@id/tv_max_min_daily"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_description_daily"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Clear sky" />
+
+        <ImageView
+            android:id="@+id/iv_daily"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/ic_sunny_weather2" />
+    </LinearLayout>
+
 
     <TextView
-        android:id="@+id/tv_max_daily"
+        android:id="@+id/tv_max_min_daily"
         style="@style/Body"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/default_margin_2"
-        app:layout_constraintEnd_toStartOf="@id/tv_min_daily"
-        app:layout_constraintStart_toEndOf="@id/tv_description_daily"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="20º" />
-
-    <TextView
-        android:id="@+id/tv_min_daily"
-        style="@style/Body"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_margin_1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_max_daily"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="17º" />
+        tools:text="20º | 17º" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
