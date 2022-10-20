@@ -29,7 +29,7 @@ class HomeFragmentViewModel @Inject constructor(
                     if (it.isEmpty()) {
                         checkError(locationResponse.errorBody())
                     } else {
-                        loadWeatherInfo(latitude = it[0].latitude, longitude = it[0].longitude)
+                        loadWeatherInfo(locationName = it[0].locationName, latitude = it[0].latitude, longitude = it[0].longitude)
                     }
                 } ?: kotlin.run { _weatherResponseState.value = CurrentWeatherState.Failure(R.string.error_response.toString()) }
             } else {
@@ -38,12 +38,12 @@ class HomeFragmentViewModel @Inject constructor(
         }
     }
 
-    private fun loadWeatherInfo(latitude: Double, longitude: Double) {
+    private fun loadWeatherInfo(locationName: String, latitude: Double, longitude: Double) {
         viewModelScope.launch {
             val weatherResponse = repository.getWeather(latitude, longitude)
             if (weatherResponse.isSuccessful) {
                 weatherResponse.body()?.let {
-                    _weatherResponseState.value = CurrentWeatherState.Success(it)
+                    _weatherResponseState.value = CurrentWeatherState.Success(it, locationName)
                 } ?: kotlin.run { _weatherResponseState.value = CurrentWeatherState.Failure(R.string.error_response.toString()) }
             } else {
                 checkError(weatherResponse.errorBody())
@@ -63,6 +63,6 @@ class HomeFragmentViewModel @Inject constructor(
 sealed class CurrentWeatherState {
     object Idle: CurrentWeatherState()
     object Loading: CurrentWeatherState()
-    class Success(val weatherData: CurrentWeatherResponseModel) : CurrentWeatherState()
+    class Success(val weatherData: CurrentWeatherResponseModel, val locationName: String) : CurrentWeatherState()
     class Failure(val message: String) : CurrentWeatherState()
 }

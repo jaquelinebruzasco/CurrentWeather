@@ -7,6 +7,11 @@
     android:layout_margin="12dp"
     android:orientation="vertical">
 
+    <SearchView
+        android:id="@+id/sv_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -16,21 +21,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sv_search">
 
-        <SearchView
-            android:id="@+id/sv_search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/tv_current_temp"
             style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sv_search"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="19º" />
 
         <TextView
@@ -40,17 +37,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin_1"
             android:drawablePadding="@dimen/default_margin_1"
-            app:drawableEndCompat="@drawable/ic_location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_current_temp"
             tools:text="Cascais" />
 
         <ImageView
             android:id="@+id/iv_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sv_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintEnd_toEndOf="@id/tv_description"
+            app:layout_constraintStart_toStartOf="@id/tv_description"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_sunny_weather" />
 
         <TextView
@@ -74,37 +71,15 @@
             tools:text="20º" />
 
         <TextView
-            android:id="@+id/tv_bar"
-            style="@style/Body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin_1"
-            android:layout_marginTop="@dimen/default_margin_2"
-            android:text="@string/fragment_home_bar"
-            app:layout_constraintStart_toEndOf="@id/tv_current_max"
-            app:layout_constraintTop_toBottomOf="@id/tv_location" />
-
-        <TextView
             android:id="@+id/tv_current_min"
             style="@style/Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_margin_1"
             android:layout_marginTop="@dimen/default_margin_2"
-            app:layout_constraintStart_toEndOf="@id/tv_bar"
+            app:layout_constraintStart_toEndOf="@id/tv_current_max"
             app:layout_constraintTop_toBottomOf="@id/tv_location"
             tools:text="17º" />
-
-        <TextView
-            android:id="@+id/tv_feels_like"
-            style="@style/Body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin_1"
-            android:layout_marginTop="@dimen/default_margin_2"
-            android:text="@string/fragment_home_feels_like"
-            app:layout_constraintStart_toEndOf="@id/tv_current_min"
-            app:layout_constraintTop_toBottomOf="@id/tv_location" />
 
         <TextView
             android:id="@+id/tv_feels_like_info"
@@ -113,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_margin_1"
             android:layout_marginTop="@dimen/default_margin_2"
-            app:layout_constraintStart_toEndOf="@id/tv_feels_like"
+            app:layout_constraintStart_toEndOf="@id/tv_current_min"
             app:layout_constraintTop_toBottomOf="@id/tv_location"
             tools:text="19º" />
 
@@ -166,6 +141,7 @@
                     tools:listitem="@layout/item_daily">
 
                 </androidx.recyclerview.widget.RecyclerView>
+
 
                 <include
                     android:id="@+id/layout_sun"

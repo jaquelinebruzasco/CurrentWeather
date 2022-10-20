@@ -15,6 +15,8 @@ fun loadIcon(
         .into(imageView)
 }
 
-fun Int.convertToHour(): String = SimpleDateFormat("HH", Locale.getDefault()).format(this * 1000L)
+fun Int.convertToHour(): String = SimpleDateFormat("HH:mm", Locale.getDefault()).format(this * 1000L)
 
 fun Int.convertToDate(): String = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(this * 1000L)
+
+fun Int.convertToDayDateHour(): String = SimpleDateFormat("EEEE, dd MMMM yyyy, HH:mm:ss", Locale.getDefault()).format(this * 1000L)

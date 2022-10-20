@@ -1,12 +1,23 @@
 <resources>
     <string name="app_name">Current Weather</string>
-    <string name="fragment_home_bar">/</string>
-    <string name="fragment_home_feels_like">Feels like</string>
+    <!-- Home fragment-->
     <string name="fragment_sun_sunrise">Sunrise</string>
     <string name="fragment_sun_sunset">Sunset</string>
     <string name="fragment_info_uvi">UV index</string>
     <string name="fragment_info_wind">Wind</string>
     <string name="fragment_info_humidity">Humidity</string>
-
+    <!-- State messages-->
     <string name="error_response">Error fetching information</string>
+    <!-- View-->
+    <string name="temp_symbol">%dº</string>
+    <string name="temp_symbol_bar">%dº /</string>
+    <string name="temp_symbol_max_min">%dº | %dº</string>
+    <string name="feels_like_temp_symbol">Feels like %dº</string>
+    <string name="velocity_symbol">%d m/s</string>
+    <string name="percentage_symbol">%d%%</string>
+    <string name="uvi_low">Low</string>
+    <string name="uvi_moderate">Moderate</string>
+    <string name="uvi_high">High</string>
+    <string name="uvi_very_high">Very High</string>
+    <string name="uvi_extreme">Extreme</string>
 </resources>
