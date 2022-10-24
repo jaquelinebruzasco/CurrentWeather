@@ -6,6 +6,11 @@
     <string name="fragment_info_uvi">UV index</string>
     <string name="fragment_info_wind">Wind</string>
     <string name="fragment_info_humidity">Humidity</string>
+    <!-- Menu-->
+    <string name="menu_favorite">Favorite Location</string>
+    <string name="menu_my_locations">My locations</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
     <!-- State messages-->
     <string name="error_response">Error fetching information</string>
     <!-- View-->

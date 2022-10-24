@@ -22,43 +22,48 @@
         app:layout_constraintTop_toBottomOf="@id/sv_search">
 
         <TextView
-            android:id="@+id/tv_current_temp"
-            style="@style/Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="19º" />
-
-        <TextView
             android:id="@+id/tv_location"
             style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin_1"
-            android:drawablePadding="@dimen/default_margin_1"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_current_temp"
-            tools:text="Cascais" />
-
-        <ImageView
-            android:id="@+id/iv_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:layout_constraintEnd_toEndOf="@id/tv_description"
-            app:layout_constraintStart_toStartOf="@id/tv_description"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_sunny_weather" />
+            tools:text="Cascais" />
 
         <TextView
             android:id="@+id/tv_description"
-            style="@style/Body.Info"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin_2"
+            app:layout_constraintEnd_toStartOf="@id/iv_icon"
+            app:layout_constraintStart_toStartOf="@id/tv_location"
+            app:layout_constraintTop_toBottomOf="@id/tv_location"
+            tools:text="Clear sky" />
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_description"
+            app:layout_constraintEnd_toEndOf="@id/tv_location"
+            app:layout_constraintStart_toEndOf="@id/tv_description"
+            app:layout_constraintTop_toTopOf="@id/tv_description"
+            tools:src="@drawable/ic_sunny_weather" />
+
+        <TextView
+            android:id="@+id/tv_current_temp"
+            style="@style/Title_Temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin_1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_icon"
-            tools:text="Clear sky" />
+            app:layout_constraintEnd_toEndOf="@id/tv_location"
+            app:layout_constraintStart_toStartOf="@id/tv_location"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
+            tools:text="19º" />
 
         <TextView
             android:id="@+id/tv_current_max"
@@ -67,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin_2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_location"
+            app:layout_constraintTop_toBottomOf="@id/tv_current_temp"
             tools:text="20º" />
 
         <TextView
@@ -78,7 +83,7 @@
             android:layout_marginStart="@dimen/default_margin_1"
             android:layout_marginTop="@dimen/default_margin_2"
             app:layout_constraintStart_toEndOf="@id/tv_current_max"
-            app:layout_constraintTop_toBottomOf="@id/tv_location"
+            app:layout_constraintTop_toBottomOf="@id/tv_current_temp"
             tools:text="17º" />
 
         <TextView
@@ -89,7 +94,7 @@
             android:layout_marginStart="@dimen/default_margin_1"
             android:layout_marginTop="@dimen/default_margin_2"
             app:layout_constraintStart_toEndOf="@id/tv_current_min"
-            app:layout_constraintTop_toBottomOf="@id/tv_location"
+            app:layout_constraintTop_toBottomOf="@id/tv_current_temp"
             tools:text="19º" />
 
         <TextView
@@ -100,7 +105,7 @@
             android:layout_marginTop="@dimen/default_margin_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_current_max"
-            tools:text="Wed Jun 29 2022 12:00:00" />
+            tools:text="Wed Jun 29 2022 12:00" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -135,9 +140,11 @@
                     android:id="@+id/rv_content_daily"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rv_content_hourly"
+                    tools:itemCount="2"
                     tools:listitem="@layout/item_daily">
 
                 </androidx.recyclerview.widget.RecyclerView>
@@ -148,7 +155,7 @@
                     layout="@layout/home_container_sun"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin_1"
+                    android:layout_margin="@dimen/default_margin_2"
                     app:layout_constraintBottom_toTopOf="@id/layout_info"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -159,7 +166,7 @@
                     layout="@layout/home_container_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin_1"
+                    android:layout_margin="@dimen/default_margin_2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

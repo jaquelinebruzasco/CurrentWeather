@@ -87,6 +87,7 @@ class HomeFragment: Fragment() {
             tvCurrentTemp.text = resources.getString(R.string.temp_symbol, data.current.temp.toInt())
             tvLocation.text = locationName
             tvLocation.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.ic_location, 0)
+            tvLocation.compoundDrawablePadding = 8
             loadIcon(
                 imageView = ivIcon,
                 code = data.current.weather[0].icon

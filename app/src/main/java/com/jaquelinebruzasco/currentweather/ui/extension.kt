@@ -19,4 +19,4 @@ fun Int.convertToHour(): String = SimpleDateFormat("HH:mm", Locale.getDefault())
 
 fun Int.convertToDate(): String = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(this * 1000L)
 
-fun Int.convertToDayDateHour(): String = SimpleDateFormat("EEEE, dd MMMM yyyy, HH:mm:ss", Locale.getDefault()).format(this * 1000L)
+fun Int.convertToDayDateHour(): String = SimpleDateFormat("EEEE, dd MMMM yyyy, HH:mm", Locale.getDefault()).format(this * 1000L)

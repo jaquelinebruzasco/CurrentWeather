@@ -18,7 +18,8 @@
             style="@style/Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/iv_icon_hourly"
+            app:layout_constraintEnd_toEndOf="@id/iv_icon_hourly"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="15:00" />
 
@@ -37,7 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin_1"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/iv_icon_hourly"
+            app:layout_constraintEnd_toEndOf="@id/iv_icon_hourly"
             app:layout_constraintTop_toBottomOf="@id/iv_icon_hourly"
             tools:text="20º"/>
 
