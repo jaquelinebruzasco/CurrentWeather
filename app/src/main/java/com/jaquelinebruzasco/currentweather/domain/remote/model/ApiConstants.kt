@@ -1,4 +1,4 @@
-package com.jaquelinebruzasco.currentweather.domain.model
+package com.jaquelinebruzasco.currentweather.domain.remote.model
 
 class ApiConstants {
     companion object {

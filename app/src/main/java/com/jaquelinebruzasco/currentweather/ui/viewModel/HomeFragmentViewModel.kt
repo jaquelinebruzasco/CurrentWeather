@@ -3,8 +3,8 @@ package com.jaquelinebruzasco.currentweather.ui.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jaquelinebruzasco.currentweather.R
-import com.jaquelinebruzasco.currentweather.domain.api.CurrentWeatherRepository
-import com.jaquelinebruzasco.currentweather.domain.model.CurrentWeatherResponseModel
+import com.jaquelinebruzasco.currentweather.domain.remote.api.CurrentWeatherRepository
+import com.jaquelinebruzasco.currentweather.domain.remote.model.CurrentWeatherResponseModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

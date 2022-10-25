@@ -1,9 +1,7 @@
-package com.jaquelinebruzasco.currentweather.domain.model
+package com.jaquelinebruzasco.currentweather.domain.remote.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-
-interface MultipleWeatherModel
 
 data class CurrentWeatherResponseModel(
     @SerializedName("current")
@@ -33,7 +31,7 @@ data class CurrentInfoModel(
     val wind: Double,
     @SerializedName("weather")
     val weather: List<WeatherInfoModel>
-): Serializable, MultipleWeatherModel
+): Serializable
 
 data class HourlyInfoModel(
     @SerializedName("dt")
@@ -42,7 +40,7 @@ data class HourlyInfoModel(
     val temp: Double,
     @SerializedName("weather")
     val weather: List<WeatherInfoModel>
-): Serializable, MultipleWeatherModel
+): Serializable
 
 data class DailyInfoModel(
     @SerializedName("dt")
@@ -51,7 +49,7 @@ data class DailyInfoModel(
     val temp: TemperatureInfoModel,
     @SerializedName("weather")
     val weather: List<WeatherInfoModel>
-): Serializable, MultipleWeatherModel
+): Serializable
 
 data class WeatherInfoModel(
     @SerializedName("main")

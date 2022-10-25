@@ -2,7 +2,7 @@ package com.jaquelinebruzasco.currentweather.ui
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.jaquelinebruzasco.currentweather.domain.model.ApiConstants
+import com.jaquelinebruzasco.currentweather.domain.remote.model.ApiConstants
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jaquelinebruzasco.currentweather.R
 import com.jaquelinebruzasco.currentweather.databinding.ItemHourlyBinding
-import com.jaquelinebruzasco.currentweather.domain.model.HourlyInfoModel
+import com.jaquelinebruzasco.currentweather.domain.remote.model.HourlyInfoModel
 import com.jaquelinebruzasco.currentweather.ui.convertToHour
 import com.jaquelinebruzasco.currentweather.ui.loadIcon
 

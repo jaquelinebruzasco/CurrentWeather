@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.jaquelinebruzasco.currentweather.R
 import com.jaquelinebruzasco.currentweather.databinding.FragmentHomeBinding
-import com.jaquelinebruzasco.currentweather.domain.model.CurrentWeatherResponseModel
+import com.jaquelinebruzasco.currentweather.domain.remote.model.CurrentWeatherResponseModel
 import com.jaquelinebruzasco.currentweather.ui.convertToDayDateHour
 import com.jaquelinebruzasco.currentweather.ui.convertToHour
 import com.jaquelinebruzasco.currentweather.ui.fragments.adapter.DailyAdapter

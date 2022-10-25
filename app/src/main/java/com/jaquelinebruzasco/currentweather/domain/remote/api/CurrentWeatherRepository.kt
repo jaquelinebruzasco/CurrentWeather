@@ -1,7 +1,7 @@
-package com.jaquelinebruzasco.currentweather.domain.api
+package com.jaquelinebruzasco.currentweather.domain.remote.api
 
-import com.jaquelinebruzasco.currentweather.domain.model.CurrentWeatherResponseModel
-import com.jaquelinebruzasco.currentweather.domain.model.LocationResponseModel
+import com.jaquelinebruzasco.currentweather.domain.remote.model.CurrentWeatherResponseModel
+import com.jaquelinebruzasco.currentweather.domain.remote.model.LocationResponseModel
 import retrofit2.Response
 import javax.inject.Inject
 

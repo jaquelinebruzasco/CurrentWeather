@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jaquelinebruzasco.currentweather.R
 import com.jaquelinebruzasco.currentweather.databinding.ItemDailyBinding
-import com.jaquelinebruzasco.currentweather.domain.model.DailyInfoModel
+import com.jaquelinebruzasco.currentweather.domain.remote.model.DailyInfoModel
 import com.jaquelinebruzasco.currentweather.ui.convertToDate
 import com.jaquelinebruzasco.currentweather.ui.loadIcon
 
