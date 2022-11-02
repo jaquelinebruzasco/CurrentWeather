@@ -9,7 +9,8 @@ import com.jaquelinebruzasco.currentweather.databinding.ItemLocationsBinding
 import com.jaquelinebruzasco.currentweather.domain.remote.model.LocationResponseModel
 
 class MyLocationsAdapter(
-    val action: (LocationResponseModel) -> Unit
+    val action: (LocationResponseModel) -> Unit,
+    val actionAddLocation: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var list: MutableList<LocationResponseModel> = mutableListOf()
@@ -39,7 +40,9 @@ class MyLocationsAdapter(
 
     override fun getItemCount() = list.size + 1
 
-    override fun getItemViewType(position: Int) = if (position == list.lastIndex + 1) 1 else 0
+    override fun getItemViewType(position: Int) : Int {
+       return if (position == itemCount) 1 else 0
+    }
 
     inner class MyLocationViewHolder(private val binding: ItemLocationsBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -53,7 +56,7 @@ class MyLocationsAdapter(
     inner class AddLocationViewHolder(private val binding: ItemAddLocationsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindAddLocation() {
-            binding.apply {  }
+            binding.root.setOnClickListener { actionAddLocation.invoke() }
         }
     }
 }

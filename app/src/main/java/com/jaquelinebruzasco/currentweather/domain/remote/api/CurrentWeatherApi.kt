@@ -13,6 +13,8 @@ interface CurrentWeatherApi {
     suspend fun getLocation(
         @Query("q")
         locationName: String,
+        @Query("limit")
+        limit: Int = 10,
         @Query("appid")
         apiKey: String = ApiConstants.API_KEY
     ): Response<List<LocationResponseModel>>

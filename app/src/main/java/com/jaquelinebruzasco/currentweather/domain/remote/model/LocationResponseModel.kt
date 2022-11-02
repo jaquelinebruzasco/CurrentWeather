@@ -14,5 +14,9 @@ data class LocationResponseModel(
     @SerializedName("lat")
     val latitude: Double,
     @SerializedName("lon")
-    val longitude: Double
-): Serializable
+    val longitude: Double,
+    @SerializedName("country")
+    val locationCountry: String,
+    @SerializedName("state")
+    val locationState: String
+) : Serializable

@@ -23,6 +23,19 @@
         <deepLink
             android:id="@+id/deepLink2"
             app:uri="currentweather://mylocations" />
+        <action
+            android:id="@+id/action_myLocationsFragment_to_addLocationBSDFragment"
+            app:destination="@id/addLocationBSDFragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/addLocationBSDFragment"
+        android:name="com.jaquelinebruzasco.currentweather.ui.fragments.AddLocationBSDFragment"
+        android:label="AddLocationBSDFragment"
+        tools:layout="@layout/fragment_bottom_sheet_dialog_add_location">
+        <argument
+            android:name="addLocation"
+            app:argType="com.jaquelinebruzasco.currentweather.domain.remote.model.LocationResponseModel" />
+    </dialog>
 
 </navigation>

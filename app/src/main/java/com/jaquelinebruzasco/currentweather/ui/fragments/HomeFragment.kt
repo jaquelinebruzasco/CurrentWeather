@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.jaquelinebruzasco.currentweather.R
@@ -22,6 +24,7 @@ import com.jaquelinebruzasco.currentweather.ui.viewModel.CurrentWeatherState
 import com.jaquelinebruzasco.currentweather.ui.viewModel.HomeFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment: Fragment() {
@@ -64,18 +67,20 @@ class HomeFragment: Fragment() {
     }
 
     private fun initObservables() {
-        lifecycleScope.launchWhenCreated {
-            viewModel.weatherResponseState.collectLatest { state ->
-                when (state) {
-                    is CurrentWeatherState.Idle -> hideProgressBar()
-                    is CurrentWeatherState.Loading -> showProgressBar()
-                    is CurrentWeatherState.Failure -> {
-                        hideProgressBar()
-                        showFailureMessage(state.message)
-                    }
-                    is CurrentWeatherState.Success -> {
-                        hideProgressBar()
-                        loadView(state.weatherData, state.locationName)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.weatherResponseState.collectLatest { state ->
+                    when (state) {
+                        is CurrentWeatherState.Idle -> hideProgressBar()
+                        is CurrentWeatherState.Loading -> showProgressBar()
+                        is CurrentWeatherState.Failure -> {
+                            hideProgressBar()
+                            showFailureMessage(state.message)
+                        }
+                        is CurrentWeatherState.Success -> {
+                            hideProgressBar()
+                            loadView(state.weatherData, state.locationName)
+                        }
                     }
                 }
             }

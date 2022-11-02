@@ -6,6 +6,10 @@
     <string name="fragment_info_uvi">UV index</string>
     <string name="fragment_info_wind">Wind</string>
     <string name="fragment_info_humidity">Humidity</string>
+    <!-- My Locations fragment-->
+    <string name="fragment_my_locations_empty">Your list of locations is empty</string>
+    <!-- Bottom Sheet Dialog Fragment-->
+    <string name="fragment_bsd_enter_location">Enter a location name</string>
     <!-- Menu-->
     <string name="menu_favorite">Favorite Location</string>
     <string name="menu_my_locations">My locations</string>
@@ -13,7 +17,7 @@
     <string name="nav_close">Close</string>
     <!-- State messages-->
     <string name="error_response">Error fetching information</string>
-    <!-- View-->
+    <!-- Home View-->
     <string name="temp_symbol">%dº</string>
     <string name="temp_symbol_bar">%dº /</string>
     <string name="temp_symbol_max_min">%dº | %dº</string>
@@ -25,4 +29,8 @@
     <string name="uvi_high">High</string>
     <string name="uvi_very_high">Very High</string>
     <string name="uvi_extreme">Extreme</string>
+    <!-- Bottom Sheet Dialog View-->
+    <string name="state_country">%s - %s</string>
+    <string name="empty_location_alert">Please, insert a location name</string>
+    <string name="location_saved">Location saved successfully</string>
 </resources>
