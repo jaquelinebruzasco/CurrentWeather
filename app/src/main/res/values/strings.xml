@@ -17,6 +17,7 @@
     <string name="nav_close">Close</string>
     <!-- State messages-->
     <string name="error_response">Error fetching information</string>
+    <string name="error_insert">This location is already saved</string>
     <!-- Home View-->
     <string name="temp_symbol">%dº</string>
     <string name="temp_symbol_bar">%dº /</string>
@@ -29,6 +30,8 @@
     <string name="uvi_high">High</string>
     <string name="uvi_very_high">Very High</string>
     <string name="uvi_extreme">Extreme</string>
+    <!-- My Locations View-->
+    <string name="delete_location">Location deleted successfully</string>
     <!-- Bottom Sheet Dialog View-->
     <string name="state_country">%s - %s</string>
     <string name="empty_location_alert">Please, insert a location name</string>

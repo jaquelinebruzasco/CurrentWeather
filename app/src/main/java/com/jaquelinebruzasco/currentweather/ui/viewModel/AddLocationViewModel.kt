@@ -9,6 +9,8 @@ import com.jaquelinebruzasco.currentweather.domain.remote.model.LocationResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import javax.inject.Inject
@@ -23,6 +25,21 @@ class AddLocationViewModel @Inject constructor(
         MutableStateFlow<AddLocationState>(AddLocationState.Idle)
     val addLocationResponseState: StateFlow<AddLocationState> = _addLocationResponseState
 
+    private val _insertLocationResponseState =
+        MutableStateFlow<InsertLocationState>(InsertLocationState.Idle)
+    val insertLocationResponseState: StateFlow<InsertLocationState> = _insertLocationResponseState
+
+    private val listOfLocations = mutableListOf<LocationResponseModel>()
+
+    init {
+        listOfLocations.clear()
+        viewModelScope.launch {
+            localRepository.getAll().collectLatest {
+                listOfLocations.addAll(it)
+            }
+        }
+    }
+
     fun loadLocation(locationName: String) {
         viewModelScope.launch {
             _addLocationResponseState.value = AddLocationState.Loading
@@ -35,7 +52,8 @@ class AddLocationViewModel @Inject constructor(
                         _addLocationResponseState.value = AddLocationState.Success(it)
                     }
                 } ?: kotlin.run {
-                    _addLocationResponseState.value = AddLocationState.Failure(R.string.error_response.toString())
+                    _addLocationResponseState.value =
+                        AddLocationState.Failure(R.string.error_response.toString())
                 }
             } else {
                 checkError(locationResponse.errorBody())
@@ -52,8 +70,33 @@ class AddLocationViewModel @Inject constructor(
         }
     }
 
-    fun insert(location: LocationResponseModel) = viewModelScope.launch {
-        localRepository.insert(location)
+    fun insert(location: LocationResponseModel) {
+        viewModelScope.launch {
+            _insertLocationResponseState.update { InsertLocationState.Loading }
+            if (listOfLocations.isEmpty()) {
+                insertAfterValidation(location)
+            } else {
+                val result = listOfLocations.none {
+                    it.locationName == location.locationName &&
+                            it.locationState == location.locationState &&
+                            it.locationCountry == location.locationCountry
+                }
+                if (result) {
+                    insertAfterValidation(location)
+                } else {
+                    _insertLocationResponseState.update { InsertLocationState.Failure }
+                }
+            }
+        }
+    }
+
+    private suspend fun insertAfterValidation(location: LocationResponseModel) {
+        try {
+            localRepository.insert(location)
+        } catch (e:Exception) {
+            _insertLocationResponseState.update { InsertLocationState.Failure }
+        }
+        _insertLocationResponseState.update { InsertLocationState.Success }
     }
 }
 
@@ -62,4 +105,11 @@ sealed class AddLocationState {
     object Loading : AddLocationState()
     class Success(val locationData: List<LocationResponseModel>) : AddLocationState()
     class Failure(val message: String) : AddLocationState()
+}
+
+sealed class InsertLocationState {
+    object Idle : InsertLocationState()
+    object Loading : InsertLocationState()
+    object Success : InsertLocationState()
+    object Failure : InsertLocationState()
 }

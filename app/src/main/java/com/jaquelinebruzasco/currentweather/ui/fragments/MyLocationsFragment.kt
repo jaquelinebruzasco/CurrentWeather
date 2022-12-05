@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.jaquelinebruzasco.currentweather.R
 import com.jaquelinebruzasco.currentweather.databinding.FragmentMyLocationsBinding
 import com.jaquelinebruzasco.currentweather.domain.remote.model.LocationResponseModel
 import com.jaquelinebruzasco.currentweather.ui.fragments.adapter.MyLocationsAdapter
@@ -71,9 +75,10 @@ class MyLocationsFragment: Fragment() {
 
     private fun setupRecycleView() = with(_binding) {
         rvMyLocations.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = myLocationsAdapter
         }
+        ItemTouchHelper(itemTouchHelperCallback()).attachToRecyclerView(rvMyLocations)
     }
 
     private fun showProgressBar() {
@@ -96,15 +101,35 @@ class MyLocationsFragment: Fragment() {
         val dialog = AddLocationBSDFragment(
             ::newListOfLocations
         )
-        dialog.isCancelable = false
         dialog.show(requireActivity().supportFragmentManager, BOTTOM_SHEET_TAG)
+    }
+
+    private fun itemTouchHelperCallback(): ItemTouchHelper.SimpleCallback {
+        return object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val location = myLocationsAdapter.getLocationAtPosition(viewHolder.bindingAdapterPosition)
+                location.let {
+                    viewModel.delete(it).also {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.delete_location,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }
+        }
     }
 
     private fun newListOfLocations() {
         viewModel.myLocations()
-    }
-
-    private fun deleteLocation(location: LocationResponseModel) {
-        viewModel.delete(location)
     }
 }

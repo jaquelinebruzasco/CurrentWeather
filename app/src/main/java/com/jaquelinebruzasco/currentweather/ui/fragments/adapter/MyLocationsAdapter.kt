@@ -41,7 +41,7 @@ class MyLocationsAdapter(
     override fun getItemCount() = list.size + 1
 
     override fun getItemViewType(position: Int) : Int {
-       return if (position == itemCount) 1 else 0
+       return if (position == itemCount - 1) 1 else 0
     }
 
     inner class MyLocationViewHolder(private val binding: ItemLocationsBinding) :
@@ -58,5 +58,9 @@ class MyLocationsAdapter(
         fun bindAddLocation() {
             binding.root.setOnClickListener { actionAddLocation.invoke() }
         }
+    }
+
+    fun getLocationAtPosition(position: Int): LocationResponseModel {
+        return list[position]
     }
 }

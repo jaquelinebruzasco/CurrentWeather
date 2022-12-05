@@ -23,7 +23,7 @@ class MyLocationsFragmentViewModel @Inject constructor(
         viewModelScope.launch {
             _myLocationsResponseState.value = MyLocationsState.Loading
             localRepository.getAll().collectLatest {
-                if (it.isNullOrEmpty()) {
+                if (it.isEmpty()) {
                     _myLocationsResponseState.value = MyLocationsState.Empty
                 } else {
                     _myLocationsResponseState.value = MyLocationsState.Success(it)
@@ -34,7 +34,6 @@ class MyLocationsFragmentViewModel @Inject constructor(
 
     fun delete(myLocation: LocationResponseModel) = viewModelScope.launch {
         localRepository.delete(myLocation)
-        _myLocationsResponseState.value = MyLocationsState.DeleteSuccess
     }
 }
 
@@ -42,5 +41,4 @@ sealed class MyLocationsState {
     object Empty: MyLocationsState()
     object Loading: MyLocationsState()
     class Success(val data: List<LocationResponseModel>) : MyLocationsState()
-    object DeleteSuccess : MyLocationsState()
 }

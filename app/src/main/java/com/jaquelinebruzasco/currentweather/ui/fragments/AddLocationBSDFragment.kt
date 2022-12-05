@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,6 +20,7 @@ import com.jaquelinebruzasco.currentweather.domain.remote.model.LocationResponse
 import com.jaquelinebruzasco.currentweather.ui.fragments.adapter.AddLocationBSDAdapter
 import com.jaquelinebruzasco.currentweather.ui.viewModel.AddLocationState
 import com.jaquelinebruzasco.currentweather.ui.viewModel.AddLocationViewModel
+import com.jaquelinebruzasco.currentweather.ui.viewModel.InsertLocationState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -66,6 +68,34 @@ class AddLocationBSDFragment(
                     }
                 }
             }
+
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.insertLocationResponseState.collectLatest { state ->
+                    when(state) {
+                        InsertLocationState.Failure -> {
+                            val dialog = AlertDialog.Builder(requireContext())
+                            dialog.setTitle("Error")
+                            dialog.setMessage(R.string.error_insert)
+                            dialog.setPositiveButton(android.R.string.ok) { d, _ ->
+                                d.dismiss()
+                            }
+                        }
+                        InsertLocationState.Idle -> Unit
+                        InsertLocationState.Loading -> Unit
+                        InsertLocationState.Success -> {
+                            this@AddLocationBSDFragment.dismiss()
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.location_saved),
+                                Toast.LENGTH_LONG
+                            ).show()
+                            newListOfLocations.invoke()
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -107,12 +137,5 @@ class AddLocationBSDFragment(
 
     private fun saveLocation(locationData: LocationResponseModel) {
         viewModel.insert(locationData)
-        this@AddLocationBSDFragment.dismiss()
-        Toast.makeText(
-            requireContext(),
-            getString(R.string.location_saved),
-            Toast.LENGTH_LONG
-        ).show()
-        newListOfLocations.invoke()
     }
 }
